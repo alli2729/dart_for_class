@@ -20,24 +20,34 @@ void main(List<String> args) {
 
   // Games begin
   show(matrix);
+  int count = 1;
   while (true) {
     stdout.write("Enter Row and Col for X: ");
     int numX = int.parse(stdin.readLineSync()!);
     matrix[convert(numX)] = ' X ';
     show(matrix);
-    if (isWin(matrix)) {
+    print(count);
+    if (isWin(matrix) == 'win') {
       print("Winner : X");
       break;
     } else {
+      // if game has 10 inputs its meen DRAW
+      if (count == 10) {
+        break;
+      }
       stdout.write("Enter Row and Col for O: ");
       int numO = int.parse(stdin.readLineSync()!);
       matrix[convert(numO)] = ' O ';
       show(matrix);
+      print(count);
     }
-    if (isWin(matrix)) {
+    if (isWin(matrix) == 'win') {
       print("Winner : O");
       break;
     }
+  }
+  if (isWin(matrix) == 'draw') {
+    print("Draw !!");
   }
 }
 
@@ -69,25 +79,25 @@ int convert(int num) {
 }
 
 // checks if list in winning status
-bool isWin(List<String> list) {
+String isWin(List<String> list) {
   if (list[0] == list[1] && list[1] == list[2]) {
-    return true;
+    return 'win';
   } else if (list[3] == list[4] && list[4] == list[5]) {
-    return true;
+    return 'win';
   } else if (list[6] == list[7] && list[7] == list[8]) {
-    return true;
+    return 'win';
   } else if (list[0] == list[3] && list[3] == list[6]) {
-    return true;
+    return 'win';
   } else if (list[1] == list[4] && list[4] == list[7]) {
-    return true;
+    return 'win';
   } else if (list[2] == list[5] && list[5] == list[8]) {
-    return true;
+    return 'win';
   } else if (list[0] == list[4] && list[4] == list[8]) {
-    return true;
+    return 'win';
   } else if (list[2] == list[4] && list[4] == list[6]) {
-    return true;
+    return 'win';
   } else {
-    return false;
+    return 'draw';
   }
 }
 
