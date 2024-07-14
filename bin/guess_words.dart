@@ -1,8 +1,27 @@
+/*
+Guessing Words game
+written by Ali Karimi
+How to play:
+The user tries to guess the letter 
+by giving single letter input to the program
+*/
+
 import 'dart:io';
 
 void main(List<String> args) {
   // initial list of words
-  List<String> words = ['ali', 'apple', 'word', 'disk'];
+  List<String> words = [
+    "code",
+    "bug",
+    "loop",
+    "byte",
+    "file",
+    "data",
+    "apple",
+    "node",
+    "test",
+    "web"
+  ];
   for (var i = 0; i <= words.length - 1; i++) {
     // select a word of words list
     String w = words[i];
