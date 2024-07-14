@@ -2,7 +2,7 @@ import 'dart:io';
 
 void main(List<String> args) {
   // making the initial matrix
-  List<String> matrix = [
+  List<String> game = [
     '11 ',
     '12 ',
     '13 ',
@@ -12,6 +12,23 @@ void main(List<String> args) {
     '31 ',
     '32 ',
     '33 '
+  ];
+  List<String> matrix = [
+    ' ',
+    '|',
+    ' ',
+    '|',
+    ' ',
+    ' ',
+    '|',
+    ' ',
+    '|',
+    ' ',
+    ' ',
+    '|',
+    ' ',
+    '|',
+    ' '
   ];
   // List<String> matrix = [];
   // for (var i = 1; i <= 9; i++) {
@@ -24,10 +41,11 @@ void main(List<String> args) {
   while (true) {
     stdout.write("Enter Row and Col for X: ");
     int numX = int.parse(stdin.readLineSync()!);
-    matrix[convert(numX)] = ' X ';
+    count++;
+    game[convert(numX, game)] = ' X ';
+    matrix[convert(numX, matrix)] = 'X';
     show(matrix);
-    print(count);
-    if (isWin(matrix) == 'win') {
+    if (isWin(game) == 'win') {
       print("Winner : X");
       break;
     } else {
@@ -37,44 +55,74 @@ void main(List<String> args) {
       }
       stdout.write("Enter Row and Col for O: ");
       int numO = int.parse(stdin.readLineSync()!);
-      matrix[convert(numO)] = ' O ';
+      count++;
+      game[convert(numO, game)] = ' O ';
+      matrix[convert(numO, matrix)] = 'O';
       show(matrix);
-      print(count);
     }
-    if (isWin(matrix) == 'win') {
+    if (isWin(game) == 'win') {
       print("Winner : O");
       break;
     }
   }
-  if (isWin(matrix) == 'draw') {
+  if (isWin(game) == 'draw') {
     print("Draw !!");
   }
 }
 
 // necessary functions
 // converting 2 digit into 1 digit
-int convert(int num) {
-  switch (num) {
-    case 11:
-      return 0;
-    case 12:
-      return 1;
-    case 13:
-      return 2;
-    case 21:
-      return 3;
-    case 22:
-      return 4;
-    case 23:
-      return 5;
-    case 31:
-      return 6;
-    case 32:
-      return 7;
-    case 33:
-      return 8;
-    default:
-      return -1;
+int convert(int num, List<String> list) {
+  // for matrix list
+  if (list.length == 9) {
+    switch (num) {
+      case 11:
+        return 0;
+      case 12:
+        return 1;
+      case 13:
+        return 2;
+      case 21:
+        return 3;
+      case 22:
+        return 4;
+      case 23:
+        return 5;
+      case 31:
+        return 6;
+      case 32:
+        return 7;
+      case 33:
+        return 8;
+      default:
+        return -1;
+    }
+    // for dup list
+  } else if (list.length == 15) {
+    switch (num) {
+      case 11:
+        return 0;
+      case 12:
+        return 2;
+      case 13:
+        return 4;
+      case 21:
+        return 5;
+      case 22:
+        return 7;
+      case 23:
+        return 9;
+      case 31:
+        return 10;
+      case 32:
+        return 12;
+      case 33:
+        return 14;
+      default:
+        return -1;
+    }
+  } else {
+    return -1;
   }
 }
 
@@ -104,11 +152,12 @@ String isWin(List<String> list) {
 // show the lits as matrix
 void show(List<String> list) {
   int mark = 0;
+  print('------');
   for (var i = 0; i < 3; i++) {
-    for (var j = 0; j < 3; j++) {
+    for (var j = 0; j < 5; j++) {
       stdout.write(list[mark]);
       mark++;
     }
-    print('');
+    print('\n------');
   }
 }
