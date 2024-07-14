@@ -1,18 +1,18 @@
+/*
+XO game
+written by Ali Karimi
+How to play:
+The game starts with input x
+then two players continue the game by giving input to the program
+until the winner is determined
+If the game does not have a winner, it will be a draw  
+*/
+
 import 'dart:io';
 
 void main(List<String> args) {
   // making the initial matrix
-  List<String> game = [
-    '11 ',
-    '12 ',
-    '13 ',
-    '21 ',
-    '22 ',
-    '23 ',
-    '31 ',
-    '32 ',
-    '33 '
-  ];
+  List<String> game = ['11', '12', '13', '21', '22', '23', '31', '32', '33'];
   List<String> matrix = [
     ' ',
     '|',
@@ -30,42 +30,78 @@ void main(List<String> args) {
     '|',
     ' '
   ];
-  // List<String> matrix = [];
-  // for (var i = 1; i <= 9; i++) {
-  //   matrix.add('$i ');
-  // }
 
   // Games begin
   show(matrix);
   int count = 1;
   while (true) {
-    stdout.write("Enter Row and Col for X: ");
-    int numX = int.parse(stdin.readLineSync()!);
+    bool takenByX = true;
+    bool winX = false, winO = false;
     count++;
-    game[convert(numX, game)] = ' X ';
-    matrix[convert(numX, matrix)] = 'X';
-    show(matrix);
-    if (isWin(game) == 'win') {
-      print("Winner : X");
-      break;
-    } else {
-      // if game has 10 inputs its meen DRAW
-      if (count == 10) {
-        break;
+    while (takenByX) {
+      stdout.write("Enter Row and Col for X: ");
+      int numX = int.parse(stdin.readLineSync()!);
+      // checks if game[input] has already X or O init
+      if (game[convert(numX, game)].contains('X') ||
+          game[convert(numX, game)].contains('O')) {
+        takenByX = true;
+        print('its Already Taken !');
+      } else {
+        takenByX = false;
       }
-      stdout.write("Enter Row and Col for O: ");
-      int numO = int.parse(stdin.readLineSync()!);
-      count++;
-      game[convert(numO, game)] = ' O ';
-      matrix[convert(numO, matrix)] = 'O';
-      show(matrix);
+      // if game[input] is empty
+      if (!takenByX) {
+        game[convert(numX, game)] = ' X ';
+        matrix[convert(numX, matrix)] = 'X';
+        show(matrix);
+        // checks if X is won
+        if (isWin(game)) {
+          winX = true;
+          break;
+        }
+      }
     }
-    if (isWin(game) == 'win') {
-      print("Winner : O");
+    if (winX) {
+      print('X wins!!');
+      break;
+    }
+
+    // if game has 10 inputs its meen DRAW
+    if (count == 10) {
+      break;
+    }
+    bool takenByO = true;
+    count++;
+    while (takenByO) {
+      stdout.write("Enter Row and Col for O: ");
+      int numX = int.parse(stdin.readLineSync()!);
+      // checks if game[input] has already X or O init
+      if (game[convert(numX, game)].contains('X') ||
+          game[convert(numX, game)].contains('O')) {
+        takenByO = true;
+        print('its Already Taken !');
+      } else {
+        takenByO = false;
+      }
+      // if game[input] is empty
+      if (!takenByO) {
+        game[convert(numX, game)] = ' O ';
+        matrix[convert(numX, matrix)] = 'O';
+        show(matrix);
+
+        // checks if O is won
+        if (isWin(game)) {
+          winO = true;
+          break;
+        }
+      }
+    }
+    if (winO) {
+      print('O winns');
       break;
     }
   }
-  if (isWin(game) == 'draw') {
+  if (!isWin(game)) {
     print("Draw !!");
   }
 }
@@ -127,25 +163,26 @@ int convert(int num, List<String> list) {
 }
 
 // checks if list in winning status
-String isWin(List<String> list) {
+bool isWin(List<String> list) {
   if (list[0] == list[1] && list[1] == list[2]) {
-    return 'win';
+    return true;
   } else if (list[3] == list[4] && list[4] == list[5]) {
-    return 'win';
+    return true;
   } else if (list[6] == list[7] && list[7] == list[8]) {
-    return 'win';
+    return true;
   } else if (list[0] == list[3] && list[3] == list[6]) {
-    return 'win';
+    return true;
   } else if (list[1] == list[4] && list[4] == list[7]) {
-    return 'win';
+    return true;
   } else if (list[2] == list[5] && list[5] == list[8]) {
-    return 'win';
+    return true;
   } else if (list[0] == list[4] && list[4] == list[8]) {
-    return 'win';
+    return true;
   } else if (list[2] == list[4] && list[4] == list[6]) {
-    return 'win';
+    return true;
   } else {
-    return 'draw';
+    // Game is Draw
+    return false;
   }
 }
 
