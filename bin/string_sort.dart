@@ -1,4 +1,10 @@
+/*
+  Ali Karimi
+  Sorting list of strings by length
+ */
+
 void main(List<String> arguments) {
+  // list of strings
   List<String> word = [
     "a",
     "",
@@ -11,6 +17,7 @@ void main(List<String> arguments) {
     "ab",
     "zxc"
   ];
+
   List<String> stringSort({required List<String> list}) {
     int n = list.length - 1;
     // implementing Bubble Sort
