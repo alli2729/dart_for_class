@@ -4,17 +4,19 @@
 
 */
 
-void main(List<String> args) {
-  List<int> list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  print(apply(list, mulBy5));
+void main(List<String> args) {}
 
-  list.forEach((item) {
-    print(item * 10);
-  });
+int Function(int, int) fun1 = (val1, val2) => val1 * val2;
+int Function(int) fun2 = (val) => fun1(val, 5);
+// List<int> list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// print(apply(list, mulBy5));
 
-  List<String> lst2 = list.map((item) => item.toString()).toList();
-  print(lst2);
-}
+// list.forEach((item) {
+//   print(item * 10);
+// });
+
+// List<String> lst2 = list.map((item) => item.toString()).toList();
+// print(lst2);
 
 int Function(int) mulBy5 = (int value) => value * 5;
 
