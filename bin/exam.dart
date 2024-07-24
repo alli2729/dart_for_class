@@ -121,8 +121,8 @@ int secoundBiggestNumber(List<int> nums) {
 List<int> reverseSort(List<int> nums) {
   int n = nums.length;
   //bubble sort
-  for (var i = 1; i <= n; i++) {
-    for (var j = 0; j < n - 1; j++) {
+  for (var i = 0; i < n - 1; i++) {
+    for (var j = 0; j < n - i - 1; j++) {
       if (nums[j] < nums[j + 1]) {
         int temp = nums[j];
         nums[j] = nums[j + 1];
