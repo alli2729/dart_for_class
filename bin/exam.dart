@@ -166,8 +166,8 @@ void todo() {
   List<String> description = [];
   List<String> status = [];
   List<int> periorty = [];
-
-  while (true) {
+  bool isAlive = true;
+  while (isAlive) {
     showMenu();
     stdout.write('Select Action : ');
     String? num = stdin.readLineSync();
@@ -176,10 +176,16 @@ void todo() {
       int action = int.parse(num);
       switch (action) {
         case 1:
+          // insert new ToDo
           insertTodo(name, description, status, periorty);
           show(name, description, status, periorty);
           break;
         case 2:
+          // change status
+          if (name.isEmpty) {
+            print('ToDo list is empty !');
+            break;
+          }
           stdout.write('Enter index of ToDo : ');
           String? doneIndex = stdin.readLineSync();
           if (doneIndex != null) {
@@ -189,6 +195,11 @@ void todo() {
           }
           break;
         case 3:
+          if (name.isEmpty) {
+            print('ToDo list is empty !');
+            break;
+          }
+          // delete ToDo
           stdout.write('Enter index of ToDo : ');
           String? deleteIndex = stdin.readLineSync();
           if (deleteIndex != null) {
@@ -198,6 +209,11 @@ void todo() {
           }
           break;
         case 4:
+          if (name.isEmpty) {
+            print('ToDo list is empty !');
+            break;
+          }
+          // edit name
           stdout.write('Enter index of ToDo : ');
           String? editIndex = stdin.readLineSync();
           if (editIndex != null) {
@@ -207,6 +223,11 @@ void todo() {
           }
           break;
         case 5:
+          if (name.isEmpty) {
+            print('ToDo list is empty !');
+            break;
+          }
+          // edit description
           stdout.write('Enter index of ToDo : ');
           String? editIndex = stdin.readLineSync();
           if (editIndex != null) {
@@ -214,6 +235,9 @@ void todo() {
             editDesc(description, index);
             show(name, description, status, periorty);
           }
+          break;
+        case 0:
+          isAlive = false;
           break;
         default:
           print('Wrong input , Try Again');
