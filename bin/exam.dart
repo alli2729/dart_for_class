@@ -6,21 +6,21 @@ import 'dart:io';
 
 void main(List<String> args) {
   // List<int> nums = [0, 1, 2, 3, 3, 5, 5, 5, 8, 0];
-  // print('Enter ten numbers :');
-  // List<int> nums = readNums();
+  print('Enter ten numbers :');
+  List<int> nums = readNums();
 
-  // print("list :  $nums");
-  // print('reverse sort:---------------------------------------');
-  // print(reverseSort(nums));
+  print("list :  $nums");
+  print('reverse sort:---------------------------------------');
+  print(reverseSort(nums));
 
-  // print('tasks:----------------------------------------------');
-  // multipleTask(nums);
+  print('tasks:----------------------------------------------');
+  multipleTask(nums);
 
-  // print('secound biggest number : ---------------------------');
-  // print(secoundBiggestNumber(nums));
+  print('secound biggest number : ---------------------------');
+  print(secoundBiggestNumber(nums));
 
-  // print('input number lists after removing duplicates number : ');
-  // print(removeDuplicates(nums));
+  print('input number lists after removing duplicates number : ');
+  print(removeDuplicates(nums));
 
   todo();
 }
