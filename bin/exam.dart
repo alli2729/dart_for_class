@@ -6,21 +6,21 @@ import 'dart:io';
 
 void main(List<String> args) {
   // List<int> nums = [0, 1, 2, 3, 3, 5, 5, 5, 8, 0];
-  print('Enter ten numbers :');
-  List<int> nums = readNums();
+  // print('Enter ten numbers :');
+  // List<int> nums = readNums();
 
-  print("list :  $nums");
-  print('reverse sort:---------------------------------------');
-  print(reverseSort(nums));
+  // print("list :  $nums");
+  // print('reverse sort:---------------------------------------');
+  // print(reverseSort(nums));
 
-  print('tasks:----------------------------------------------');
-  multipleTask(nums);
+  // print('tasks:----------------------------------------------');
+  // multipleTask(nums);
 
-  print('secound biggest number : ---------------------------');
-  print(secoundBiggestNumber(nums));
+  // print('secound biggest number : ---------------------------');
+  // print(secoundBiggestNumber(nums));
 
-  print('input number lists after removing duplicates number : ');
-  print(removeDuplicates(nums));
+  // print('input number lists after removing duplicates number : ');
+  // print(removeDuplicates(nums));
 
   todo();
 }
@@ -167,6 +167,7 @@ void todo() {
   List<String> status = [];
   List<int> periorty = [];
   bool isAlive = true;
+
   while (isAlive) {
     showMenu();
     stdout.write('Select Action : ');
@@ -190,10 +191,16 @@ void todo() {
           String? doneIndex = stdin.readLineSync();
           if (doneIndex != null) {
             int index = int.parse(doneIndex);
-            done(status, index);
+            if (index - 1 < name.length) {
+              // index > len
+              done(status, index);
+              show(name, description, status, periorty);
+              break;
+            }
+            print('wrong input');
             show(name, description, status, periorty);
+            break;
           }
-          break;
         case 3:
           if (name.isEmpty) {
             print('ToDo list is empty !');
@@ -204,8 +211,15 @@ void todo() {
           String? deleteIndex = stdin.readLineSync();
           if (deleteIndex != null) {
             int index = int.parse(deleteIndex);
-            delete(name, description, status, periorty, index);
+            if (index - 1 < name.length) {
+              // index > len
+              delete(name, description, status, periorty, index);
+              show(name, description, status, periorty);
+              break;
+            }
+            print('wrong input');
             show(name, description, status, periorty);
+            break;
           }
           break;
         case 4:
@@ -218,8 +232,15 @@ void todo() {
           String? editIndex = stdin.readLineSync();
           if (editIndex != null) {
             int index = int.parse(editIndex);
-            editName(name, index);
+            if (index - 1 < name.length) {
+              // index > len
+              editName(name, index);
+              show(name, description, status, periorty);
+              break;
+            }
+            print('wrong input');
             show(name, description, status, periorty);
+            break;
           }
           break;
         case 5:
@@ -232,8 +253,15 @@ void todo() {
           String? editIndex = stdin.readLineSync();
           if (editIndex != null) {
             int index = int.parse(editIndex);
-            editDesc(description, index);
+            if (index - 1 < name.length) {
+              // index > len
+              editDesc(description, index);
+              show(name, description, status, periorty);
+              break;
+            }
+            print('wrong input');
             show(name, description, status, periorty);
+            break;
           }
           break;
         case 0:
