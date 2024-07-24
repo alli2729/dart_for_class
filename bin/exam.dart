@@ -151,15 +151,6 @@ List<int> fakeSet(List<int> nums) {
 }
 
 //* Q5 --------------------------------------------
-void showMenu() {
-  print('---------------------------------------');
-  print('1. Insert ToDo');
-  print('2. Change Status to Done');
-  print('3. Delete ToDo');
-  print('4. Edit Name of ToDo');
-  print('5. Edit Description of ToDo');
-  print('0. Exit');
-}
 
 void todo() {
   List<String> name = [];
@@ -368,4 +359,14 @@ void sortByPeriorty(
       }
     }
   }
+}
+
+void showMenu() {
+  print('---------------------------------------');
+  print('1. Insert ToDo');
+  print('2. Change Status to Done');
+  print('3. Delete ToDo');
+  print('4. Edit Name of ToDo');
+  print('5. Edit Description of ToDo');
+  print('0. Exit');
 }
