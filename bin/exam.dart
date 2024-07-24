@@ -65,24 +65,39 @@ void multipleTask(List<int> nums) {
   List<int> set = fakeSet(nums);
   List<int> numbers = bubbleSort(nums);
   List<int> repeat = [];
+
+  // filling repeat with 0
   for (int i = 0; i < set.length; i++) {
     repeat.add(0);
   }
 
-  int i = 0;
-  int j = 0;
-
-  while (i < set.length - 1) {
-    int count = 1;
-    if (numbers[j] == set[i]) {
-      count++;
-      repeat[i] = count;
+  int i = 0, j = i;
+  while (i <= set.length - 1 && j <= numbers.length - 1) {
+    if (set[i] == numbers[j]) {
+      // increasing repeat count
+      int c = repeat[i];
+      c++;
+      repeat[i] = c;
+      // check next number in nymbers
       j++;
-    } else if (numbers[j] != set[i]) {
+    } else {
+      // check next number in set
       i++;
-      // j = i;
     }
   }
+  int maximum = getMax(repeat);
+  int index = repeat.indexOf(maximum);
+  print('most repeated itme : ${set[index]}');
+}
+
+int getMax(List<int> nums) {
+  int max = nums[0];
+  for (var i = 0; i < nums.length; i++) {
+    if (nums[i] > max) {
+      max = nums[i];
+    }
+  }
+  return max;
 }
 
 List<int> bubbleSort(List<int> nums) {
