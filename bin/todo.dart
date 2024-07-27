@@ -8,7 +8,7 @@ void todo() {
   List<String> name = [];
   List<String> description = [];
   List<String> status = [];
-  List<int> periorty = [];
+  List<int> periority = [];
   bool isAlive = true;
 
   while (isAlive) {
@@ -21,8 +21,8 @@ void todo() {
       switch (action) {
         case 1:
           // insert new ToDo
-          insertTodo(name, description, status, periorty);
-          show(name, description, status, periorty);
+          insertTodo(name, description, status, periority);
+          show(name, description, status, periority);
           break;
         case 2:
           // Select Todo
@@ -40,22 +40,22 @@ void todo() {
                 case 1:
                   // change status
                   done(status, index);
-                  show(name, description, status, periorty);
+                  show(name, description, status, periority);
                   break;
                 case 2:
                   // edit name
                   editName(name, index);
-                  show(name, description, status, periorty);
+                  show(name, description, status, periority);
                   break;
                 case 3:
                   // edit description
                   editDesc(description, index);
-                  show(name, description, status, periorty);
+                  show(name, description, status, periority);
                   break;
                 case 4:
                   // delete todo
-                  delete(name, description, status, periorty, index);
-                  show(name, description, status, periorty);
+                  delete(name, description, status, periority, index);
+                  show(name, description, status, periority);
                   break;
                 case 0:
                   break;
@@ -75,12 +75,12 @@ void todo() {
 
 // insert new ToDo to old lists
 void insertTodo(List<String> name, List<String> description,
-    List<String> status, List<int> periorty) {
+    List<String> status, List<int> periority) {
   stdout.write('name of todo : ');
   String? inputName = stdin.readLineSync();
   stdout.write('description : ');
   String? inputDesc = stdin.readLineSync();
-  stdout.write('periorty : ');
+  stdout.write('periority : ');
   String? inputPer = stdin.readLineSync();
 
   if (inputName != null && inputDesc != null && inputPer != null) {
@@ -88,19 +88,19 @@ void insertTodo(List<String> name, List<String> description,
     name.add(inputName);
     description.add(inputDesc);
     status.add('pending');
-    periorty.add(per);
+    periority.add(per);
   }
 }
 
 // show all ToDo's
 void show(List<String> name, List<String> description, List<String> status,
-    List<int> periorty) {
-  sortByPeriorty(name, description, status, periorty);
+    List<int> periority) {
+  sortByPeriorty(name, description, status, periority);
   print("\nToDo's -----------------------------------------------");
   for (var i = 0; i < name.length; i++) {
     int index = i + 1;
     print(
-        '$index. ${name[i]} : ${description[i]} : ${status[i]} -> periorty : ${periorty[i]}');
+        '$index. ${name[i]} : ${description[i]} : ${status[i]} -> periority : ${periority[i]}');
   }
 }
 
@@ -124,11 +124,11 @@ void editDesc(List<String> description, int num) {
 
 // delete the selected ToDo
 void delete(List<String> name, List<String> description, List<String> status,
-    List<int> periorty, int index) {
+    List<int> periority, int index) {
   name.removeAt(index - 1);
   description.removeAt(index - 1);
   status.removeAt(index - 1);
-  periorty.removeAt(index - 1);
+  periority.removeAt(index - 1);
 }
 
 // change status of selected ToDo to DONE !
@@ -140,17 +140,17 @@ void sortByPeriorty(
   List<String> name,
   List<String> description,
   List<String> status,
-  List<int> periorty,
+  List<int> periority,
 ) {
   int n = name.length;
   //bubble sort
   for (var i = 1; i <= n; i++) {
     for (var j = 0; j < n - 1; j++) {
-      if (periorty[j] < periorty[j + 1]) {
+      if (periority[j] < periority[j + 1]) {
         // swap periorty
-        int temp = periorty[j];
-        periorty[j] = periorty[j + 1];
-        periorty[j + 1] = temp;
+        int temp = periority[j];
+        periority[j] = periority[j + 1];
+        periority[j + 1] = temp;
         // swap name
         String tmpName = name[j];
         name[j] = name[j + 1];
