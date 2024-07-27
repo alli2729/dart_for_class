@@ -1,3 +1,10 @@
+/*
+  Written by Ali Karimi
+  
+  Simple Todo in terminal
+*/
+
+
 import 'dart:io';
 
 void main(List<String> args) {
