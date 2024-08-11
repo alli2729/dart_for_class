@@ -42,18 +42,39 @@ void main(List<String> args) {
   // check if key is exist in map
   final String? userinput = stdin.readLineSync();
   if (userinput != null) {
-    final List<String> chars = userinput.split('');
-    final Map<String, int> charactersCount = {};
+    print(wordsCount(userinput));
+    print(charsCount(userinput));
+  }
+}
 
-    for (var c in chars) {
-      if (charactersCount[c] != null) {
-        int count = charactersCount[c]!;
-        charactersCount[c] = ++count;
-      } else {
-        charactersCount[c] = 1;
-      }
+Map wordsCount(String s) {
+  final List<String> words = s.split(' ');
+  final Map<String, int> wordsCount = {};
+
+  for (var w in words) {
+    if (wordsCount[w] != null) {
+      int count = wordsCount[w]!;
+      wordsCount[w] = ++count;
+    } else {
+      wordsCount[w] = 1;
     }
   }
+  return wordsCount;
+}
+
+Map charsCount(String s) {
+  final List<String> chars = s.split('');
+  final Map<String, int> charsCount = {};
+
+  for (var c in chars) {
+    if (charsCount[c] != null) {
+      int count = charsCount[c]!;
+      charsCount[c] = ++count;
+    } else {
+      charsCount[c] = 1;
+    }
+  }
+  return charsCount;
 }
 
 int Function(int, int) fun1 = (val1, val2) => val1 * val2;
