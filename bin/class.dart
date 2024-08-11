@@ -42,16 +42,17 @@ void main(List<String> args) {
   var test = {}; // ist a MAP !
 
   // check if key is exist in map
-  final String? userinput = stdin.readLineSync();
-  if (userinput != null) {
-    print(wordsCount(userinput));
-    print(charsCount(userinput));
-  }
+  // final String? userinput = stdin.readLineSync();
+  // if (userinput != null) {
+  //   print(wordsCount(userinput));
+  //   print(charsCount(userinput));
+  // }
 
   List<String> input = [];
   final String? stringInput = stdin.readLineSync();
   if (stringInput != null) {
     input.addAll(stringInput.trim().split(' '));
+    input.removeWhere((element) => element.isEmpty);
   } else {
     print('your input is NOT valid !!');
   }
