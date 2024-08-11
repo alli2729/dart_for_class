@@ -65,7 +65,7 @@ Map toMap(List<String> input) {
   for (String word in input) {
     String first = word[0];
     if (words[first] != null) {
-      words[first]?.add(word);
+      words[first]!.add(word);
     } else {
       words[first] = [word];
     }
