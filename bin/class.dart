@@ -4,7 +4,57 @@
 
 */
 
-void main(List<String> args) {}
+import 'dart:io';
+
+void main(List<String> args) {
+  // set is a iterable
+  Set<int> myset = {1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 9, 9};
+  // add to set
+  myset.add(10);
+  myset.addAll({10, 11, 11, 12});
+  // access to set
+  myset.elementAt(5); // returns 6
+  myset.elementAtOrNull(55); // returns null if not found
+  // length of set
+  myset.length;
+
+  // map is not iterable
+  Map<String, int> myMap = {
+    'a': 1,
+    'b': 2,
+  };
+  // map have two getters
+  myMap.keys;
+  myMap.values;
+  //add to map
+  myMap['c'] = 3; // adds to map
+  myMap['a'] = 5; // change the value of 'a'
+  myMap.addAll({'d': 7, 'e': 10}); // adds another map to myMap
+  // length of map
+  myMap.length;
+  // MapEntry
+  MapEntry<String, int> m = MapEntry('key', 4);
+  MapEntry<String, int> w = MapEntry('W', 5);
+  myMap.addEntries([m, w]);
+
+  var test = {}; // ist a MAP !
+
+  // check if key is exist in map
+  final String? userinput = stdin.readLineSync();
+  if (userinput != null) {
+    final List<String> chars = userinput.split('');
+    final Map<String, int> charactersCount = {};
+
+    for (var c in chars) {
+      if (charactersCount[c] != null) {
+        int count = charactersCount[c]!;
+        charactersCount[c] = ++count;
+      } else {
+        charactersCount[c] = 1;
+      }
+    }
+  }
+}
 
 int Function(int, int) fun1 = (val1, val2) => val1 * val2;
 int Function(int) fun2 = (val) => fun1(val, 5);
