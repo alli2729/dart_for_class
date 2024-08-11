@@ -45,6 +45,30 @@ void main(List<String> args) {
     print(wordsCount(userinput));
     print(charsCount(userinput));
   }
+
+  List<String> input = [];
+  final String? stringInput = stdin.readLineSync();
+  if (stringInput != null) {
+    input.addAll(stringInput.trim().split(' '));
+  } else {
+    print('your input is NOT valid !!');
+  }
+
+  print(toMap(input));
+}
+
+Map toMap(List<String> input) {
+  Map<String, List<String>> words = {};
+
+  for (String word in input) {
+    String first = word[0];
+    if (words[first] != null) {
+      words[first]?.add(word);
+    } else {
+      words[first] = [word];
+    }
+  }
+  return words;
 }
 
 Map wordsCount(String s) {
